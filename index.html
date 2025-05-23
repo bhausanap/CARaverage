@@ -133,7 +133,7 @@
 
       <button onclick="calculateMileage()">मायलेज कॅल्क्युलेट करा</button>
     </div>
-
+  <div class="result" id="output"></div>
     <div class="divider">किंवा</div>
       <h2>प्रवास खर्च कॅल्क्युलेटर</h2>
     <div>
@@ -149,7 +149,7 @@
       <button onclick="calculateCost()">प्रवास खर्च कॅल्क्युलेट करा</button>
     </div>
 
-    <div class="result" id="output"></div>
+    <div class="result" id="output1"></div>
   
 
    <footer>
@@ -185,10 +185,10 @@
       if (!isNaN(distance) && !isNaN(avg) && !isNaN(rate) && avg > 0) {
         const fuelRequired = distance / avg;
         const cost = fuelRequired * rate;
-        document.getElementById("output").innerText =
+        document.getElementById("output1").innerText =
           `अंदाजे इंधन लागेल: ${fuelRequired.toFixed(2)} लि\nप्रवास खर्च: ₹${cost.toFixed(2)}`;
       } else {
-        document.getElementById("output").innerText = "सर्व माहिती योग्यरीत्या भरा.";
+        document.getElementById("output1").innerText = "सर्व माहिती योग्यरीत्या भरा.";
       }
     }
   </script>

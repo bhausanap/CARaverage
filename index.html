@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>गाडीचा मायलेज व खर्च कॅल्क्युलेटर</title>
+  <style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    .photo-container {
+        width:150px;
+        height:150px;
+       
+        border-radius: 50%;
+        overflow: hidden;
+        margin: auto;
+        border: 3px solid #fbfafa;
+    }
+    .photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+     
+
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f6f6;
+      text-align: center;
+      padding: 20px;
+      font-weight: 900;
+       
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      
+    }
+
+    h2 {
+      color: #f8f9f9;
+      background-color: rgb(0, 9, 2);
+      border-radius: 10px;
+    }
+
+    input, select {
+      padding: 10px;
+      width: 90%;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 10px;
+      font-weight: 900;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4005f2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #fa2205;
+    }
+
+    .divider {
+      margin: 25px 0 10px;
+      font-weight: bold;
+      color: #555;
+    }
+   
+  </style>
+</head>
+<body>
+     <div class="container">
+    <header>
+      <div class="photo-container">
+        <img class="photo" src="bhau.jpg" alt="bhausaheb sanap photo" />
+      </div>
+
+      <label>प्रगतशील शेतकरी <br />भाऊसाहेब सानप (आयटी इंजीनियर)</label>
+      <p>
+        <i class="fa fa-phone" style="font-size: 15px"></i> Phone Number:
+        <a href="tel:+917798755784">+91 7798755784</a>
+      </p>
+      <p>
+        <i class="fa fa-envelope" style="font-size: 15px"></i> Email ID:
+        <a href="mailto:bhausahebsanap95@gmail.com">bhausahebsanap95@gmail.com</a>
+      </p>
+      <p>
+        <a aria-label="Chat on WhatsApp" href="https://wa.me/7798755784">
+          <img alt="Chat on WhatsApp" src="wh.png" style="width: 50%" />
+        </a>
+      </p>
+    </header>
+    
+  <div class="container">
+    <h2>गाडीचा मायलेज  कॅल्क्युलेटर</h2>
+
+    <div>
+      <label>प्रवास केलेले अंतर (किमी):</label><br>
+      <input type="number" id="distance" placeholder="उदा. 250"><br>
+
+      <label>खर्च केलेले इंधन (लिटर):</label><br>
+      <input type="number" id="fuel" placeholder="उदा. 20"><br>
+
+      <label>इंधन प्रकार:</label><br>
+      <select id="fuelType">
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+      </select><br>
+
+      <button onclick="calculateMileage()">मायलेज कॅल्क्युलेट करा</button>
+    </div>
+
+    <div class="divider">किंवा</div>
+      <h2>प्रवास खर्च कॅल्क्युलेटर</h2>
+    <div>
+      <label>फक्त अंतर (किमी):</label><br>
+      <input type="number" id="tripDistance" placeholder="उदा. 150"><br>
+
+      <label>तुमचा गाडीचा मायलेज (km/l):</label><br>
+      <input type="number" id="knownAvg" placeholder="उदा. 18"><br>
+
+      <label>इंधन दर (₹ प्रति लिटर):</label><br>
+      <input type="number" id="fuelRate" placeholder="उदा. 106"><br>
+
+      <button onclick="calculateCost()">प्रवास खर्च कॅल्क्युलेट करा</button>
+    </div>
+
+    <div class="result" id="output"></div>
+  </div>
+
+   <footer>
+      <hr />
+      <label>
+        पत्ता: गट नंबर 56 ते 62 (वडझिरे), हनुमान नगर ढाबे वस्ती, पोस्टऑफिस: नायगाव, तालुका: सिन्नर, जिल्हा: नाशिक
+      </label><hr>
+      <br />
+      <label>© 2025 All rights reserved. </label>
+    </footer>
+
+
+  <script>
+    function calculateMileage() {
+      const distance = parseFloat(document.getElementById("distance").value);
+      const fuel = parseFloat(document.getElementById("fuel").value);
+      const fuelType = document.getElementById("fuelType").value;
+
+      if (!isNaN(distance) && !isNaN(fuel) && fuel > 0) {
+        const avg = (distance / fuel).toFixed(2);
+        document.getElementById("output").innerText = 
+          `तुमची ${fuelType} गाडी ${avg} किमी/लि मायलेज देते.`;
+      } else {
+        document.getElementById("output").innerText = "कृपया योग्य माहिती भरा.";
+      }
+    }
+
+    function calculateCost() {
+      const distance = parseFloat(document.getElementById("tripDistance").value);
+      const avg = parseFloat(document.getElementById("knownAvg").value);
+      const rate = parseFloat(document.getElementById("fuelRate").value);
+
+      if (!isNaN(distance) && !isNaN(avg) && !isNaN(rate) && avg > 0) {
+        const fuelRequired = distance / avg;
+        const cost = fuelRequired * rate;
+        document.getElementById("output").innerText =
+          `अंदाजे इंधन लागेल: ${fuelRequired.toFixed(2)} लि\nप्रवास खर्च: ₹${cost.toFixed(2)}`;
+      } else {
+        document.getElementById("output").innerText = "सर्व माहिती योग्यरीत्या भरा.";
+      }
+    }
+  </script>
+</body>
+</html>
